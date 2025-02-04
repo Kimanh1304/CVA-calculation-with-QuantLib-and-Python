@@ -15,12 +15,7 @@ $$ CVA = (1-R) \sum_{i=1}^n df(t_i)EE(t_i)(PD(t_{i-1})-PD(t_i))$$
 
 ## Calculate the discounted expected exposure
 
-To convert the expected exposure at time t in its present value expressed in time-zero dollars we only need to add a few more lines of code.
-
-We use the todays yield curve to calculate the discount factor for each point on our grid. With the numpy function vectorize
-we generate a vectorized wrapper of the discount method of the QuantLib YieldTermStructure. This vectorized version can be applied on a array of ql.Dates or times instead of a scalar input
-
-As the numpy documentation states the np.vectorize function is provided primarily for convenience, not for performance.
+Using the todays yield curve to calculate the discount factor for each point on the grid. With the numpy function vectorize we generate a vectorized wrapper of the discount method of the QuantLib YieldTermStructure. This vectorized version can be applied on a array of ql.Dates or times instead of a scalar input
 
 After the generating the market scenarios and pricing the netting set under each scenario we will calculate the discounted NPVs for each deal in the portfolio
 
@@ -31,6 +26,6 @@ To derive the default probability one could either use market implied quotes (e.
 
 The QuantLib provides a real bunch of different types of DefaultTermStructures. You can either bootstrap a default curve from CDS quotes or you build a interpolated curve like we do here and combine one of the many interpolators (Linear, Backward Flat, etc.) with one of the possible traits (hazard rate, default probability, default density).
 
-With the default termstructure we can calculate the probability for a default between the times t_i and t_{i+1} for all i in our time grid.
+With the default termstructure we can calculate the probability for a default between the times $t_i$ and $t_{i+1}$ for all i in our time grid.
 
 Again we use the numpy function vectorize to apply a scalar function on an array. The method defaultProbability takes two times as input, t and T. It returns the probability of default between t and T.
