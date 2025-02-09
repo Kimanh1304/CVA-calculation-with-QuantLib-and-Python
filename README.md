@@ -22,7 +22,7 @@ After the generating the market scenarios and pricing the netting set under each
 Using the discounted npv cube we can calculate the discounted expected exposure
 
 ## The default probability of the counterparty
-To derive the default probability one could either use market implied quotes (e.g. CDS) or use rating information (e.g. based on historical observations). We assume that the survival probability is given by $sp(t)=\exp(-\int_0^t \lambda(t))$ with a deterministic piecewise-constant hazard rate function $\lambda(t)$. Given a grid of dates $d_0<\dots<d_n$ and the corresponding backward flat hazard rate $latex\lambda_0,\dots,\lambda_n$ we can use the Quantlib HazardRateCurve to build a default curve.
+To derive the default probability one could either use market implied quotes (e.g. CDS) or use rating information (e.g. based on historical observations). We assume that the survival probability is given by $sp(t)=\exp(-\int_0^t \lambda(t))$ with a deterministic piecewise-constant hazard rate function $\lambda(t)$. Given a grid of dates $d_0<\dots<d_n$ and the corresponding backward flat hazard rate $\lambda_0,\dots,\lambda_n$ we can use the Quantlib HazardRateCurve to build a default curve.
 
 The QuantLib provides a real bunch of different types of DefaultTermStructures. You can either bootstrap a default curve from CDS quotes or you build a interpolated curve like we do here and combine one of the many interpolators (Linear, Backward Flat, etc.) with one of the possible traits (hazard rate, default probability, default density).
 
